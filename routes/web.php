@@ -17,10 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
-
 Route::namespace('Edit')->group(function () {
     // Controllers Within The "App\Http\Controllers\Edit" Namespace
     Route::get('edit/home', 'HomeController@index')->name('home');
+
     Route::resource('edit/quotes', 'QuotesController');
+    Route::resource('edit/pictures', 'PicturesController');
+    Route::resource('edit/authors', 'AuthorsController');
+
 });

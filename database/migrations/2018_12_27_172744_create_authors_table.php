@@ -17,11 +17,11 @@ class CreateAuthorsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('surname');
-            $table->unsignedInteger('picture');
+            $table->unsignedInteger('picture')->nullable();
             $table->foreign('picture')
                 ->references('id')
                 ->on('pictures')
-                ->onDelete('restrict')
+                ->onDelete('set null')
                 ->onUpdate('cascade');
             $table->timestamps();
         });
