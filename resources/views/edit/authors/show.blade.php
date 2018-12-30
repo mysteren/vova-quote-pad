@@ -42,7 +42,9 @@
                     <tr>
                         <th>Картинка</th> 
                         <td>
-                            <img src="" alt="">
+                        @if ($author->picture)
+                            <img src="<?= Storage::url($author->picture->path)?>" alt="" class="img-thumbnail">
+                        @endif
                         </td> 
                     </tr>
                 </tbody>

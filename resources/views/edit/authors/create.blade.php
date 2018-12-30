@@ -24,7 +24,7 @@
         </div><br />
         @endif
 
-        <form method="post" action="{{ route('authors.store') }}">
+        <form method="post" action="{{ route('authors.store') }}" enctype="multipart/form-data">
 
             <div class="form-group">
                 <label for="input-name">Имя:</label>

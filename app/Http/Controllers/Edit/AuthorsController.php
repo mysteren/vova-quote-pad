@@ -15,7 +15,7 @@ class AuthorsController extends Controller
      */
     public function index()
     {
-        $authors = Author::all();
+        $authors = Author::with('picture')->get();
 
         return view('edit.authors.index', compact('authors'));
     }
@@ -50,9 +50,13 @@ class AuthorsController extends Controller
             'surname'=> $request->get('surname'),
         ]);
 
+        if ($image = $request->file('image')) {
+            $author->setImage($image);
+        }
+
         $author->save();
 
-        return redirect('/edit/authors')->with('success', 'Автор создан');
+        return redirect()->route('authors.show', ['author' => $author->id])->with('success', 'Автор создан');
     }
 
     /**
@@ -97,8 +101,17 @@ class AuthorsController extends Controller
         $author->name = $request->get('name');
         $author->surname = $request->get('surname');
 
-        $share->save();
-        return redirect('/edit/authors')->with('success', 'Автор обновлен');
+        
+
+        if ($image = $request->file('image')) {
+            $author->setImage($image);
+            //$author->save();
+        }
+
+        $author->save();
+
+        return redirect()->route('authors.show', ['author' => $author->id])->with('success', 'Автор обновлен');
+        //return redirect('/edit/authors', )->with('success', 'Автор обновлен');
     }
 
     /**

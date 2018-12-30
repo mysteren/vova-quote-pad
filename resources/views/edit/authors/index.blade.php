@@ -24,8 +24,15 @@
                         <td>{{$author->id}}</td>
                         <td>{{$author->name}}</td>
                         <td>{{$author->surname}}</td>
-                        <td><img src="" alt=""></td>
-                        <td><a href="{{ route('authors.edit',$author->id)}}" class="btn btn-primary">Изменить</a></td>
+                        <td>
+                            @if ($author->picture)
+                                <img src="<?= Storage::url($author->picture->path)?>" alt="" class="img-thumbnail img-fluid">
+                            @endif
+                        </td>
+                        <td>
+                            <a href="{{ route('authors.show',$author->id)}}" class="btn btn-primary">Смотреть</a>
+                            <a href="{{ route('authors.edit',$author->id)}}" class="btn btn-primary">Изменить</a>
+                        </td>
                         <td>
                             <form action="{{ route('authors.destroy', $author->id)}}" method="post">
                             @csrf

@@ -17,8 +17,8 @@ class CreateAuthorsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('surname');
-            $table->unsignedInteger('picture')->nullable();
-            $table->foreign('picture')
+            $table->unsignedInteger('picture_id')->nullable();
+            $table->foreign('picture_id')
                 ->references('id')
                 ->on('pictures')
                 ->onDelete('set null')

@@ -1,3 +1,9 @@
+<?php 
+
+use Illuminate\Support\Facades\Storage;
+
+?>
+
 @extends('layouts.app')
 @section('content')
 <div class="container">
@@ -25,7 +31,7 @@
         </div><br />
         @endif
 
-        <form method="post" action="{{ route('authors.update', $author->id) }}">
+        <form method="post" action="{{ route('authors.update', $author->id) }}" enctype="multipart/form-data"> 
 
             @method('PATCH')
             @csrf
@@ -46,7 +52,16 @@
                     <label class="custom-file-label" for="customFile">Выберите файл</label>
                     <input type="file" name="image" class="custom-file-input" id="customFile">
                 </div>
+
+                
+
             </div>    
+        
+            @if ($author->picture)
+            <div class="form-group">
+                <img src="<?= Storage::url($author->picture->path)?>" alt="" class="img-thumbnail img-fluid">
+            </div>
+            @endif
             
             <button type="submit" class="btn btn-success">Изменить</button>
 
