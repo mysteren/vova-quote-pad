@@ -39,8 +39,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div>
-
+            <a href="{{ route('quotes.create')}}" class="btn btn-success">Создать</a>
         </div>
     </div>
     
