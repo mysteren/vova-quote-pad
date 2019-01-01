@@ -18,8 +18,8 @@ class CreateQuotesTable extends Migration
             $table->string('name');
             $table->text('text');
             $table->date('date');
-            $table->unsignedInteger('author');
-            $table->foreign('author')
+            $table->unsignedInteger('author_id');
+            $table->foreign('author_id')
                 ->references('id')
                 ->on('authors')
                 ->onDelete('cascade')
