@@ -17,6 +17,25 @@ class Author extends Model
         'picture_id',
     ];
 
+
+
+    /**
+     * Связь с Picture
+     */
+    public function picture()
+    {
+        return $this->hasOne('App\Picture', 'id', 'picture_id');
+    }
+
+
+    public static function getList()
+    {
+        // $authors = self::where()->keyBy('id')->select(['name', 'surname'])->toArray();
+        $authors = self::all(['id', 'name', 'surname'])->keyBy('id')->toArray();
+        return $authors;
+
+    }
+
     /**
      * 
      */
@@ -31,24 +50,16 @@ class Author extends Model
             $this->picture_id = null;
         }
         
-        $path = Storage::putFile('public/images/' . $h1 . '/' . $h2 , $image, 'public');
-        //$url = Storage::url($path);
+        $pathPrefix = Picture::PATH_PREFIX . '/src/';
+        $path = Storage::putFile($pathPrefix . $h1 . '/' . $h2 , $image, 'public');
+        
 
         $picture = new Picture;
         $picture->description = $image->getClientOriginalName();
-        $picture->path = $path;
+        $picture->path = str_replace($pathPrefix, '', $path);
         if ($picture->save()) {
             $this->picture_id = $picture->id;
         }
     }
-
-
-    /**
-     * Связь с Picture
-     */
-    public function picture()
-    {
-        return $this->hasOne('App\Picture', 'id', 'picture_id');
-    }
-
+    
 }

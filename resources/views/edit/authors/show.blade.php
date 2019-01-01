@@ -43,7 +43,7 @@
                         <th>Картинка</th> 
                         <td>
                         @if ($author->picture)
-                            <img src="<?= Storage::url($author->picture->path)?>" alt="" class="img-thumbnail">
+                            <img src="<?= $author->picture->getUrl() ?>" alt="" class="img-thumbnail">
                         @endif
                         </td> 
                     </tr>

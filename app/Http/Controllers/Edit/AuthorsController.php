@@ -101,8 +101,6 @@ class AuthorsController extends Controller
         $author->name = $request->get('name');
         $author->surname = $request->get('surname');
 
-        
-
         if ($image = $request->file('image')) {
             $author->setImage($image);
             //$author->save();

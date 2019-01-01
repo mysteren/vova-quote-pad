@@ -59,7 +59,7 @@ use Illuminate\Support\Facades\Storage;
         
             @if ($author->picture)
             <div class="form-group">
-                <img src="<?= Storage::url($author->picture->path)?>" alt="" class="img-thumbnail img-fluid">
+                <img src="<?= $author->picture->getUrl() ?>" alt="" class="img-thumbnail img-fluid">
             </div>
             @endif
             
